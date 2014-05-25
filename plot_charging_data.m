@@ -42,21 +42,24 @@ end
 
 figure(1);
 xlabel('Time (h)');
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Voltage (V)');
-set(gca, 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 legend(labels);
 
 figure(2);
 xlabel('Time (h)');
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Current (A)');
-set(gca, 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 legend(labels);
 
 
 figure(3);
 xlabel('Time (h)');
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Power (W)');
-set(gca, 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 18);
 legend(labels);
 
 end
