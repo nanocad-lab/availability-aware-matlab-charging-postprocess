@@ -19,43 +19,46 @@ if size(colors,1) ~= N || size(labels,2) ~= N
     return;
 end
 
+vfig = figure; % voltage
+ifig = figure; % current
+pfig = figure; % power
+
 for i=1:N
    % Voltage
-   figure(1);
+   figure(vfig);
    hold on;
    plot(traces(:,1,i)/3600, traces(:,2,i), 'Color', colors(i,:));
    hold off;
    
    % Current
-   figure(2);
+   figure(ifig);
    hold on;
    plot(traces(:,1,i)/3600, traces(:,3,i), 'Color', colors(i,:));
    hold off;
    
    % Power
-   figure(3);
+   figure(pfig);
    hold on;
    plot(traces(:,1,i)/3600, traces(:,2,i) .* traces(:,3,i), 'Color', colors(i,:));
    hold off;
 end
 
 
-figure(1);
+figure(vfig);
 xlabel('Time (h)');
 set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Voltage (V)');
 set(gca, 'FontName', 'Arial', 'FontSize', 18);
 legend(labels);
 
-figure(2);
+figure(ifig);
 xlabel('Time (h)');
 set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Current (A)');
 set(gca, 'FontName', 'Arial', 'FontSize', 18);
 legend(labels);
 
-
-figure(3);
+figure(pfig);
 xlabel('Time (h)');
 set(gca, 'FontName', 'Arial', 'FontSize', 18);
 ylabel('Power (W)');
