@@ -53,6 +53,7 @@ custom_num_traces = 1; % Change me, I am a hack
 custom_traces = NaN(custom_max_S, 3, custom_num_traces);
 
 custom_traces(:,:,1) = custom_trace_5V_500mA_battery;
+custom_traces(:,3,:) = -custom_traces(:,3,:); % Flip current polarity to plot, since negative current for battery on custom board means charging
 
 custom_labels = {  'Custom Board, 5V, 500mA Limit'...
          };
@@ -70,7 +71,7 @@ set(gca, 'FontName', 'Arial', 'FontSize', 18);
 
 
 % Parse, aggregate, & plot direct battery traces
-[rawbatt_400mAh_trace_4200mV_500mA] = convert_raw_keithley_csv([rawbatt_raw_data_path 'rawbatt-charging-nplc6-72000samples-4.2V-500mA-limit.csv']);
+[rawbatt_400mAh_trace_4200mV_500mA] = convert_raw_keithley_csv([rawbatt_raw_data_path 'rawbatt-charging-nplc6-72000samples-4.2V-500mA-limit-notimestamp.csv'], 2, 10);
 rawbatt_max_S = 72000; % Change me, I am a hack
 rawbatt_num_traces = 1; % Change me, I am a hack
 rawbatt_traces = NaN(rawbatt_max_S, 3, rawbatt_num_traces);
