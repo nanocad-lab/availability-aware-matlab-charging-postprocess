@@ -15,10 +15,38 @@ master_path = '/Users/Mark/Dropbox/AvailabilityAware-share/data/charging/';
 % rawbatt_pre_processed_data_path = [pre_processed_data_path 'rawbatt/'];
 
 post_processed_data_path = [master_path 'post-processed/'];
+toshiba_post_processed_data_path = [post_processed_data_path 'toshiba/'];
 nexus4_post_processed_data_path = [post_processed_data_path 'nexus4/'];
 ipod_post_processed_data_path = [post_processed_data_path 'ipod/'];
 custom_post_processed_data_path = [post_processed_data_path 'custom/'];
 rawbatt_post_processed_data_path = [post_processed_data_path 'rawbatt/'];
+
+%% Aggregate & plot Toshiba traces
+toshiba_max_S = 875; % Change me, I am a hack
+toshiba_num_traces = 2; % Change me, I am a hack
+toshiba_traces = NaN(toshiba_max_S, 2, toshiba_num_traces);
+
+toshiba_traces(1:size(toshiba_trace_wallwart_off,1),:,1) = toshiba_trace_wallwart_off;
+toshiba_traces(1:size(toshiba_trace_wallwart_prime95,1),:,2) = toshiba_trace_wallwart_prime95;
+
+toshiba_colors = hsv(toshiba_num_traces);
+
+toshiba_labels = {  'Toshiba Laptop Turned Off, Wall Wart'...
+                    'Toshiba Laptop Running Prime95, Wall Wart'...
+         };
+     
+% Custom plot since we don't have voltage/current for Toshiba, and it is AC
+% WattsUp measurements
+figure;
+hold on;
+plot(toshiba_trace_wallwart_off(:,1)/3600, toshiba_trace_wallwart_off(:,2), 'Color', toshiba_colors(1,:));
+plot(toshiba_trace_wallwart_prime95(:,1)/3600, toshiba_trace_wallwart_prime95(:,2), 'Color', toshiba_colors(2,:));
+xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
+ylabel('Power (W)', 'FontName', 'Arial', 'FontSize', 16);
+title('Toshiba Laptop', 'FontName', 'Arial', 'FontSize', 18);
+legend(toshiba_labels, 'FontName', 'Arial', 'FontSize', 12);
+hold off;
+saveplot(gcf, [toshiba_post_processed_data_path 'power']);
 
 %% Post-process Nexus4 traces (filter out end-of-charge noise from phone turning on)
 
@@ -155,6 +183,7 @@ clear axes;
 clear line1;
 clear line2;
 clear tmp;
+clear toshiba_colors;
 
 % clear master_path;
 % 
