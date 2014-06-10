@@ -1,5 +1,5 @@
-function [] = plot_charging_data(traces, colors, labels)
-% Authors: Mark Gottscho and Salma Elmalaki
+function [] = plot_charging_data(traces, colors, labels, figtitle, output_dir)
+% Author: Mark Gottscho
 % mgottscho@ucla.edu
 %
 % Arguments:
@@ -7,6 +7,12 @@ function [] = plot_charging_data(traces, colors, labels)
 %       second column is voltage in V, third column is current in A.
 %       S is maximum number of samples in any of the traces. N is the
 %       number of traces.
+%   colors -- Nx3 Matrix: Color RGB entry in rows for each trace
+%   labels -- 1xN Vector: Labels for each trace to be put in figure legend
+%   figtitle -- String: Title string to display on top of each generated
+%       figure. Leave as '' if you don't want a title shown
+%   output_dir -- String: Full path to directory where you want .fig, .eps,
+%       .png files written for each figure
 
 N = size(traces,3);
 S = size(traces,2);
@@ -45,24 +51,30 @@ end
 
 
 figure(vfig);
-xlabel('Time (h)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-ylabel('Voltage (V)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-legend(labels);
+title(figtitle, 'FontName', 'Arial', 'FontSize', 18);
+xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+ylabel('Voltage (V)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+legend(labels, 'FontName', 'Arial', 'FontSize', 12);
+saveplot(vfig, [output_dir 'charging_voltages']);
 
 figure(ifig);
-xlabel('Time (h)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-ylabel('Current (A)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-legend(labels);
+title(figtitle, 'FontName', 'Arial', 'FontSize', 18);
+xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+ylabel('Current (A)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+legend(labels, 'FontName', 'Arial', 'FontSize', 12);
+saveplot(ifig, [output_dir 'charging_currents']);
 
 figure(pfig);
-xlabel('Time (h)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-ylabel('Power (W)');
-set(gca, 'FontName', 'Arial', 'FontSize', 18);
-legend(labels);
+title(figtitle, 'FontName', 'Arial', 'FontSize', 18);
+xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+ylabel('Power (W)', 'FontName', 'Arial', 'FontSize', 16);
+set(gca, 'FontName', 'Arial', 'FontSize', 16);
+legend(labels, 'FontName', 'Arial', 'FontSize', 12);
+saveplot(pfig, [output_dir 'charging_powers']);
 
 end
