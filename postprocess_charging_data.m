@@ -39,8 +39,9 @@ toshiba_labels = {  'Toshiba Laptop Turned Off, Wall Wart'...
 % WattsUp measurements
 figure;
 hold on;
-plot(toshiba_trace_wallwart_off(:,1)/3600, toshiba_trace_wallwart_off(:,2), 'Color', toshiba_colors(1,:));
-plot(toshiba_trace_wallwart_prime95(:,1)/3600, toshiba_trace_wallwart_prime95(:,2), 'Color', toshiba_colors(2,:));
+plot(toshiba_trace_wallwart_off(:,1)/3600, toshiba_trace_wallwart_off(:,2), 'Color', toshiba_colors(1,:), 'LineWidth', 2.0);
+plot(toshiba_trace_wallwart_prime95(:,1)/3600, toshiba_trace_wallwart_prime95(:,2), 'Color', toshiba_colors(2,:), 'LineWidth', 2.0);
+set(gca, 'FontName', 'Arial', 'FontSize', 14);
 xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
 ylabel('Power (W)', 'FontName', 'Arial', 'FontSize', 16);
 title('Toshiba Laptop', 'FontName', 'Arial', 'FontSize', 18);
@@ -140,7 +141,8 @@ plot_charging_data(custom_traces, hsv(custom_num_traces), custom_labels, 'Custom
 % Plot the battery SOC custom since it's not expected format for
 % plot_charging_data()
 figure;
-plot(custom_trace_5V_500mA_battsoc(:,1)/3600, custom_trace_5V_500mA_battsoc(:,2));
+plot(custom_trace_5V_500mA_battsoc(:,1)/3600, custom_trace_5V_500mA_battsoc(:,2), 'LineWidth', 2.0);
+set(gca, 'FontName', 'Arial', 'FontSize', 14);
 xlabel('Time (h)', 'FontName', 'Arial', 'FontSize', 16);
 ylabel('Battery State of Charge (%)', 'FontName', 'Arial', 'FontSize', 16);
 title('Custom Board', 'FontName', 'Arial', 'FontSize', 18);
@@ -170,6 +172,9 @@ plot_charging_data(rawbatt_traces, hsv(rawbatt_num_traces), rawbatt_labels, 'Dir
 figure;
 [axes, line1, line2] = plotyy(rawbatt_400mAh_trace_4200mV_600mA(:,1)/3600, rawbatt_400mAh_trace_4200mV_600mA(:,2).*rawbatt_400mAh_trace_4200mV_600mA(:,3),...
        rawbatt_400mAh_trace_4200mV_600mA_battsoc(:,1)/3600, rawbatt_400mAh_trace_4200mV_600mA_battsoc(:,2));
+set(line1, 'LineWidth', 2.0);
+set(line2, 'LineWidth', 2.0);
+set(gca, 'FontName', 'Arial', 'FontSize', 14);
 ylabel(axes(1), 'Power (W)', 'FontName', 'Arial', 'FontSize', 16);
 ylabel(axes(2), 'Battery SOC (%)', 'FontName', 'Arial', 'FontSize', 16);
 xlabel(axes(2), 'Time (h)', 'FontName', 'Arial', 'FontSize', 16);

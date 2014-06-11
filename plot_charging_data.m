@@ -33,19 +33,22 @@ for i=1:N
    % Voltage
    figure(vfig);
    hold on;
-   plot(traces(:,1,i)/3600, traces(:,2,i), 'Color', colors(i,:));
+   plot(traces(:,1,i)/3600, traces(:,2,i), 'Color', colors(i,:), 'LineWidth', 2.0);
+   set(gca, 'FontName', 'Arial', 'FontSize', 14);
    hold off;
    
    % Current
    figure(ifig);
    hold on;
-   plot(traces(:,1,i)/3600, traces(:,3,i), 'Color', colors(i,:));
+   plot(traces(:,1,i)/3600, traces(:,3,i), 'Color', colors(i,:), 'LineWidth', 2.0);
+   set(gca, 'FontName', 'Arial', 'FontSize', 14);
    hold off;
    
    % Power
    figure(pfig);
    hold on;
-   plot(traces(:,1,i)/3600, traces(:,2,i) .* traces(:,3,i), 'Color', colors(i,:));
+   plot(traces(:,1,i)/3600, traces(:,2,i) .* traces(:,3,i), 'Color', colors(i,:), 'LineWidth', 2.0);
+   set(gca, 'FontName', 'Arial', 'FontSize', 14);
    hold off;
 end
 
